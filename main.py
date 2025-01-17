@@ -1,7 +1,7 @@
 import pyttsx3
 import os
 import speech_recognition as sr
-
+import datetime
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -27,12 +27,24 @@ def takecommands():
     except Exception as e:
         print('say that again please')
         return 'none'
-print("Welcome to Desktop Assistance!")
-speak("Welcome to Desktop Assistance!")
+print("Welcome to Desktop Assistance 'Bolt'!")
+
+def greeting():
+    hour = datetime.datetime.now().hour
+    
+    if hour > 0 and hour < 12:
+        speak('Good Morning!')
+    elif hour >= 12 and hour < 16:
+        speak('Good Evening!')
+    else:
+        speak('Good Night!')
+greeting()
+speak("I am Desktop Assistance 'Bolt'! How can I help you today!")
 while True:
     query = takecommands()
     if 'quit' in query:
-        speak('Quitting the process. Bye friend.')
+        speak('Bye Bye friend!')
         quit()
     else:
         speak(query)
+        
