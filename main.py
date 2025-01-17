@@ -3,6 +3,7 @@ import os
 import speech_recognition as sr
 import datetime
 import webbrowser
+import wikipedia
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -65,4 +66,13 @@ while True:
         speak(command)
     elif 'who are you' in query:
         command = 'My name is Bolt and I am Desktop Assistance.'
+        speak(command)
+    elif 'wikipedia' in query:
+        speak('Searching wikipedia...')
+        query = query.replace('wikipedia', " ") # replace the wikipedia by space
+        result = wikipedia.summary(query, sentences=5)
+        print(result)
+        
+        speak(f"According to wikipedia, {result}.")
+        
         
