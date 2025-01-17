@@ -2,6 +2,7 @@ import pyttsx3
 import os
 import speech_recognition as sr
 import datetime
+import webbrowser
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -40,11 +41,28 @@ def greeting():
         speak('Good Night!')
 greeting()
 speak("I am Desktop Assistance 'Bolt'! How can I help you today!")
+
 while True:
-    query = takecommands()
+    query = takecommands().lower()
     if 'quit' in query:
-        speak('Bye Bye friend!')
+        speak('Thank you for using me. Bye Bye friend!')
         quit()
-    else:
-        speak(query)
+    elif 'open facebook' in query:
+        speak('Opening facebook..')
+        webbrowser.open('https://www.facebook.com')
+    elif 'open instagram' in query:
+        speak('Opening instagram..')
+        webbrowser.open('https://www.instagram.com')
+    elif 'open youtube' in query:
+        speak('Opening youtube....')
+        webbrowser.open('https://www.youtube.com')
+    elif 'open google' in query:
+        speak('Opening google...')
+        webbrowser.open('https://www.google.com')
+    elif 'how are you' in query:
+        command = '''
+        I am good!'''
+        speak(command)
+    elif 'who are you' in query:
+        command = 'My name is Bolt and I am Desktop Assistance.'
         
