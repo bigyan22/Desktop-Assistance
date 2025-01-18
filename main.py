@@ -4,6 +4,7 @@ import speech_recognition as sr
 import datetime
 import webbrowser
 import wikipedia
+import nepali.datetime as nepali
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -81,3 +82,20 @@ while True:
         seconds = datetime.datetime.now().second
         
         speak(f"The time is {hour} hours, {minutes} minutes and {seconds} seconds.")
+    elif 'the date' in query or "today's english date" in query:
+        date = datetime.datetime.now().strftime("%Y: %B :%d")
+        speak(f"Today's date is: {date} ")
+    elif 'today nepali date' in query or "today's nepali date":
+        nepali_months = [
+            "Baisakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin",
+            "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
+        ]
+
+        try:
+            ad_date = datetime.datetime.now().date()
+            
+            bs_date = nepali.nepalidate.from_date(ad_date)
+            
+            speak(f"Today's Nepali date is: {bs_date.year}, {nepali_months[bs_date.month-1]}, {bs_date.day}")
+        except ValueError as e:
+            speak('Sorry, there occurs an issue. Please try again.')
