@@ -75,4 +75,9 @@ while True:
         
         speak(f"According to wikipedia, {result}.")
         
+    elif 'the time' in query:
+        hour = datetime.datetime.now().hour
+        minutes = datetime.datetime.now().minute
+        seconds = datetime.datetime.now().second
         
+        speak(f"The time is {hour} hours, {minutes} minutes and {seconds} seconds.")
