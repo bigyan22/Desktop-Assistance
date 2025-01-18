@@ -5,6 +5,7 @@ import datetime
 import webbrowser
 import wikipedia
 import nepali.datetime as nepali
+import random
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -85,7 +86,7 @@ while True:
     elif 'the date' in query or "today's english date" in query:
         date = datetime.datetime.now().strftime("%Y: %B :%d")
         speak(f"Today's date is: {date} ")
-    elif 'today nepali date' in query or "today's nepali date":
+    elif 'today nepali date' in query or "today's nepali date" in query:
         nepali_months = [
             "Baisakh", "Jestha", "Ashadh", "Shrawan", "Bhadra", "Ashwin",
             "Kartik", "Mangsir", "Poush", "Magh", "Falgun", "Chaitra"
@@ -99,3 +100,10 @@ while True:
             speak(f"Today's Nepali date is: {bs_date.year}, {nepali_months[bs_date.month-1]}, {bs_date.day}")
         except ValueError as e:
             speak('Sorry, there occurs an issue. Please try again.')
+    elif 'play music' in query:
+        music_dir = "E:\\music\\songs"
+        songs = os.listdir(music_dir)
+        rd = random.choice(songs)
+        os.startfile(os.path.join(music_dir, rd))
+        speak('Playing Music..')
+        quit()
