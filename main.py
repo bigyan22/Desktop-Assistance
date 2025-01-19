@@ -6,6 +6,7 @@ import webbrowser
 import wikipedia
 import nepali.datetime as nepali
 import random
+import pywhatkit
 
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -107,3 +108,10 @@ while True:
         os.startfile(os.path.join(music_dir, rd))
         speak('Playing Music..')
         quit()
+    elif 'play song on youtube' in query:
+        speak('Which song do you want to listen on YouTube?')
+        song = takecommands()
+        
+        speak("Enjoy the music...")
+        pywhatkit.playonyt(song)
+    
