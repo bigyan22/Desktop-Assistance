@@ -25,7 +25,7 @@ def takecommands():
         r.pause_threshold = 1
         audio = r.listen(source)
     try:
-        print('Renognizing...')
+        print('Recognizing...')
         query = r.recognize_google(audio, language="en-NP")
         print(f"User said: {query}")
         return query.lower()
@@ -114,4 +114,8 @@ while True:
         
         speak("Enjoy the music...")
         pywhatkit.playonyt(song)
-    
+        quit()
+    elif "search on google" in query:
+        speak('What do you want to search on google?')
+        question = takecommands()
+        pywhatkit.search(question)
