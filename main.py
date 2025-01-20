@@ -60,7 +60,6 @@ def check_weather(city):
     feels_c = (feels_temp-32)*5/9
     time.sleep(1.5)
     speak(f"The temperature in {city} is: {round(temp_C,2)}°C and it's feels like {round(feels_c, 2)}°C.")
-    quit()
 
 while True:
     query = takecommands().lower()
