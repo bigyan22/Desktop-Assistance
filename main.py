@@ -7,12 +7,15 @@ import wikipedia
 import nepali.datetime as nepali
 import random
 import pywhatkit
-
+import requests
+import time
+from dotenv import load_dotenv
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
 engine.setProperty('voices', voices[1].id)
 
-
+load_dotenv()
+apikey = os.getenv('API_KEY')
 
 def speak(audio):
     engine.say(audio)
@@ -45,6 +48,19 @@ def greeting():
         speak('Good Night!')
 greeting()
 speak("I am Desktop Assistance 'Bolt'! How can I help you today!")
+
+def check_weather(city):
+    speak('Checking the weather...')
+    weather_data = requests.get(
+    f"https://api.openweathermap.org/data/2.5/weather?q={city}&units=imperial&APPID={apikey}"
+    )
+    temp = weather_data.json()['main']['temp']
+    feels_temp = weather_data.json()['main']['feels_like']
+    temp_C = (temp - 32)*5/9
+    feels_c = (feels_temp-32)*5/9
+    time.sleep(1.5)
+    speak(f"The temperature in {city} is: {round(temp_C,2)}°C and it's feels like {round(feels_c, 2)}°C.")
+    quit()
 
 while True:
     query = takecommands().lower()
@@ -119,3 +135,7 @@ while True:
         speak('What do you want to search on google?')
         question = takecommands()
         pywhatkit.search(question)
+    elif 'the weather' in query:
+        speak("Which city weather do you want to check?")
+        city = takecommands().lower()
+        check_weather(city)
