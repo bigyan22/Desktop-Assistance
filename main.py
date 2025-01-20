@@ -89,7 +89,6 @@ while True:
         speak('Searching wikipedia...')
         query = query.replace('wikipedia', " ") # replace the wikipedia by space
         result = wikipedia.summary(query, sentences=5)
-        print(result)
         
         speak(f"According to wikipedia, {result}.")
         
@@ -138,3 +137,4 @@ while True:
         speak("Which city weather do you want to check?")
         city = takecommands().lower()
         check_weather(city)
+    
