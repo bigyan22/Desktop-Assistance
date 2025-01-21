@@ -9,6 +9,7 @@ import random
 import pywhatkit
 import requests
 import time
+import pyjokes
 from dotenv import load_dotenv
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -153,3 +154,9 @@ while True:
             speak(f'Successfully found. You are in {city} city of {province}, in the country {country}.')
         except Exception as e:
             speak("Sorry sir. I am unable to find the location. Try again!")
+    elif 'tell me a joke' in query or 'make me a laugh' in query:
+        speak("Sure, Here's the joke.")
+        joke = pyjokes.get_joke()
+        speak(joke)
+        print(joke)
+        
