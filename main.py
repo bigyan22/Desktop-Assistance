@@ -21,6 +21,8 @@ def speak(audio):
     engine.say(audio)
     engine.runAndWait()
 
+
+
 def takecommands():
     r = sr.Recognizer()
     with sr.Microphone() as source:
@@ -137,4 +139,17 @@ while True:
         speak("Which city weather do you want to check?")
         city = takecommands().lower()
         check_weather(city)
-    
+    elif 'where we are' in query or 'check the location' in query:
+        speak('Wait sir, let me check the location....')
+        try:
+            ip_address = requests.get('https://api.ipify.org').text
+            url = "https://get.geojs.io/v1/ip/geo/"+ip_address+ '.json'
+            requ = requests.get(url)
+            response = requ.json()
+            province = response['region']
+            city = response['city']
+            country = response['country']
+            time.sleep(1.5)
+            speak(f'Successfully found. You are in {city} city of {province}, in the country {country}.')
+        except Exception as e:
+            speak("Sorry sir. I am unable to find the location. Try again!")
