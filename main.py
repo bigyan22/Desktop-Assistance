@@ -42,10 +42,10 @@ print("Welcome to Desktop Assistance 'Bolt'!")
 
 def greeting():
     hour = datetime.datetime.now().hour
-    
+    print(hour)
     if hour > 0 and hour < 12:
         speak('Good Morning!')
-    elif hour >= 12 and hour < 16:
+    elif hour >= 12 and hour < 19:
         speak('Good Evening!')
     else:
         speak('Good Night!')
@@ -159,4 +159,15 @@ while True:
         joke = pyjokes.get_joke()
         speak(joke)
         print(joke)
+    elif 'open notepad' in query:
+        speak("Opening notepad..")
+        os.system('start notepad')
+    elif 'open vscode' in query or 'open vs code' in query:
+        # os.system('start code')
+        path = "C:\\Users\\Dell\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+        speak("Opening VS Code.")
+        os.startfile(path)
+    elif 'open cmd' in query or 'open command prompt' in query:
+        speak("Opening Command Prompt")
+        os.system('start cmd')
         
