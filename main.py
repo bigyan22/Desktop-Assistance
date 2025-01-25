@@ -44,10 +44,11 @@ print("Welcome to Desktop Assistance 'Bolt'!")
 
 def greeting():
     hour = datetime.datetime.now().hour
-    print(hour)
     if hour > 0 and hour < 12:
         speak('Good Morning!')
-    elif hour >= 12 and hour < 19:
+    elif hour >= 12 and hour <= 15:
+        speak('Good Afternoon!')
+    elif hour > 15 and hour < 19:
         speak('Good Evening!')
     else:
         speak('Good Night!')
