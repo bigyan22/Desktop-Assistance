@@ -184,7 +184,12 @@ while True:
             speak(f"Battery is at {percentage}% and is currently {status}.")
         else:
             print("battery status could not be determined. Sorry!")
-            
+    elif 'open ms word' in query or 'open miscrosoft word' in query:
+        speak("Opening Ms Word...")
+        os.system('start winword')
+    elif 'open excel' in query or 'open microsoft excel' in query:
+        speak('Opening Excel...')
+        os.system('start excel')
     elif 'close notepad' in query:
         speak("Closing Notepad...")
         os.system('taskkill /f /im notepad.exe')
@@ -197,3 +202,10 @@ while True:
     elif 'close cmd' in query or 'close command prompt' in query:
         speak('Closing command prompt..')
         os.system('taskkill /f /im cmd.exe')
+    elif 'close ms word' in query or 'close microsoft word' in query:
+        speak('closing MS word..')
+        os.system('taskkill /f /im winword.exe')
+    elif 'close excel' in query or 'close microsoft excel' in query:
+        speak('Closing Excel...')
+        os.system('taskkill /f /im excel.exe')
+    
