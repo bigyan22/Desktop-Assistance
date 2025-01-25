@@ -11,6 +11,7 @@ import requests
 import time
 import pyjokes
 import psutil
+import subprocess
 from dotenv import load_dotenv
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -163,6 +164,9 @@ while True:
     elif 'open notepad' in query:
         speak("Opening notepad..")
         os.system('start notepad')
+    elif 'open calculator' in query:
+        speak("Opening calculator...")
+        os.system('calc')
     elif 'open vscode' in query or 'open vs code' in query:
         # os.system('start code')
         path = "C:\\Users\\Dell\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
@@ -184,4 +188,10 @@ while True:
     elif 'close notepad' in query:
         speak("Closing Notepad...")
         os.system('taskkill /f /im notepad.exe')
+    elif 'close calculator' in query:
+        speak("Closing Calculator...")
+        try:
+            subprocess.run('taskkill /f /fi "WINDOWTITLE eq Calculator"', shell=True)
+        except Exception as e:
+            speak("Could not close Calculator. Please try again.")
     
