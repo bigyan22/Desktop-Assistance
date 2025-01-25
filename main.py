@@ -194,4 +194,6 @@ while True:
             subprocess.run('taskkill /f /fi "WINDOWTITLE eq Calculator"', shell=True)
         except Exception as e:
             speak("Could not close Calculator. Please try again.")
-    
+    elif 'close cmd' in query or 'close command prompt' in query:
+        speak('Closing command prompt..')
+        os.system('taskkill /f /im cmd.exe')
