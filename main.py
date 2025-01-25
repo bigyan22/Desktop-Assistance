@@ -10,6 +10,7 @@ import pywhatkit
 import requests
 import time
 import pyjokes
+import psutil
 from dotenv import load_dotenv
 engine = pyttsx3.init('sapi5')
 voices = engine.getProperty('voices')
@@ -170,4 +171,12 @@ while True:
     elif 'open cmd' in query or 'open command prompt' in query:
         speak("Opening Command Prompt")
         os.system('start cmd')
-        
+    elif 'check battery percentage' in query or 'check battery status' in query:
+        battery = psutil.sensors_battery()
+        if battery:
+            percentage = battery.percent
+            charging = battery.power_plugged
+            status = 'chargin' if charging else 'not charging'
+            speak(f"Battery is at {percentage}% and is currently {status}.")
+        else:
+            print("battery status could not be determined. Sorry!")
