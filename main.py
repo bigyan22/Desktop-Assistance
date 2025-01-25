@@ -180,3 +180,8 @@ while True:
             speak(f"Battery is at {percentage}% and is currently {status}.")
         else:
             print("battery status could not be determined. Sorry!")
+            
+    elif 'close notepad' in query:
+        speak("Closing Notepad...")
+        os.system('taskkill /f /im notepad.exe')
+    
