@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```bash 
 API_KEY = your_Api_key_here
 ```
-You can get your weatehr api key from  **openweathermap.org**
+- You can get your weatehr api key from  **openweathermap.org**
 
 4. Run the assistance
 ```bash
@@ -48,6 +48,4 @@ python main.py
 
 
 ## Contributions
-
-
 Feel free to fork the repository, create an issue, or submit a pull request if you'd like to contribute to improving the project. Contributions are always welcome!
